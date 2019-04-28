@@ -1,0 +1,21 @@
+server:
+  port: 8899
+
+spring:
+  application:
+    name: config-server-local
+  profiles:
+    # 使用本机配置文件
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/,classpath:/order-service,classpath:/user
+  security:
+    basic:
+      enabled: true
+    # 设置配置中心访问密码
+    user:
+      name: user01
+      password: pwd12356

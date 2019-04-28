@@ -1,0 +1,45 @@
+## ！！注意：此文件名必须是bootstrap.properties或bootstrap.yml，否则无法加载到配置中心uri
+## 如果启动时连接的是默认的http://localhost:8888时，证明没有读取到本地配置
+# 设置系统属性环境
+server:
+  port: 8892
+# spring cloud 配置中心
+spring:
+  profiles:
+    # 本机使用哪个环境，使用pom.xml定义的profile。注意这里不能使用属性文件的局部变量！
+    active: @profiles.active@
+  cloud:
+    config:
+      # 配置中心的profile
+      profile: @profiles.active@
+      name: ${spring.application.name}
+      # 连接配置中心的用户名和密码
+      username: user01
+      password: pwd12356
+  application:
+    name: order-service
+# 注意这里使用了“---”对多个相同属性名进行分割，不写启动会报错
+---
+# 开发环境
+spring:
+  profiles: dev
+  cloud:
+    config:
+      uri: http://localhost:8899
+---
+# 其他环境
+spring:
+  profiles: pro
+  cloud:
+    config:
+#      uri: http://localhost:8899
+      # 无法连接，用于测试
+      uri: http://172.0.0.1:9000
+
+
+## http请求地址和资源文件映射如下:
+#/{application}/{profile}[/{label}]
+#/{application}-{profile}.yml
+#/{label}/{application}-{profile}.yml
+#/{application}-{profile}.properties
+#/{label}/{application}-{profile}.properties

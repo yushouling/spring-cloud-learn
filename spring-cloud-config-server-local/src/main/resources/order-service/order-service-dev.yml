@@ -1,0 +1,5 @@
+## 对应config客户端，该文件命名规则：${spring.application.name}-${spring.cloud.config.profile}.yml
+
+jdbc:
+  url:
+    username: order_dev
