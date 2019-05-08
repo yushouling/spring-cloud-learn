@@ -19,3 +19,6 @@ spring:
     user:
       name: user01
       password: pwd12356
+      
+## 如需实现配置中心更改配置后，自动推送到各个客户端，依赖 Spring Cloud Bus 消息中间件可以实现。
+## <artifactId>spring-cloud-starter-bus-amqp</artifactId>
